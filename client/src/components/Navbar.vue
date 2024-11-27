@@ -1,27 +1,14 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-import { loadState, saveState } from '../utils/Store.js';
-import Login from './Login.vue';
-
-const theme = ref(loadState('theme') || 'light')
-
-onMounted(() => {
-  document.documentElement.setAttribute('data-bs-theme', theme.value)
-})
-
-function toggleTheme() {
-  theme.value = theme.value == 'light' ? 'dark' : 'light'
-  document.documentElement.setAttribute('data-bs-theme', theme.value)
-  saveState('theme', theme.value)
-}
+  import Login from './Login.vue';
 
 </script>
 
 <template>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="/img/cw-logo.png" height="45" />
+      <div class="d-flex align-items-center">
+        <img class="img-fluid me-2" src="https://images.unsplash.com/photo-1547120692-e17787650e71?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bG9uZG9uJTIwdG93ZXJ8ZW58MHx8MHx8fDA%3D" alt="Tower">
+        <h4>Tower</h4>
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -31,18 +18,12 @@ function toggleTheme() {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
+          <RouterLink :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable text-uppercase">
+            Home
+          </RouterLink>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
-      <div>
-        <button class="btn text-light" @click="toggleTheme"
-          :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
-          <Icon :name="theme == 'light' ? 'weather-sunny' : 'weather-night'" />
-        </button>
-      </div>
       <Login />
     </div>
   </nav>
@@ -67,5 +48,11 @@ a:hover {
   nav {
     height: 64px;
   }
+}
+
+img {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  height: 6dvh;
 }
 </style>

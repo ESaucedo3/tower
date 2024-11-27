@@ -32,7 +32,7 @@ RUN npm install
 COPY server ./
 
 # Copy the built client files from the client builder container to the server's www directory
-COPY --from=client-builder /app/client/docs /app/server/www
+COPY --from=client-builder /app/client/dist /app/server/www
 
 # Expose the port your application runs on (e.g., 3000)
 EXPOSE 3000

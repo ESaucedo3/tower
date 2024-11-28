@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
-import { AppState } from '../AppState.js';
-import { AuthService } from '../services/AuthService.js';
+import { AppState } from '../AppState';
+import { AuthService } from '../services/AuthService';
 
 const identity = computed(() => AppState.identity)
 const account = computed(() => AppState.account)
@@ -23,8 +23,9 @@ async function logout() {
       <div class="dropdown my-2 my-lg-0">
         <div type="button" class="bg-dark border-0 selectable no-select" data-bs-toggle="dropdown"
           aria-expanded="false">
-          <div v-if="account?.picture || identity?.picture">
-            <img :src="account?.picture || identity?.picture" alt="account photo" height="40" class="rounded" />
+          <div class="d-flex align-items-center" v-if="account?.picture || identity?.picture">
+            <img :src="account?.picture || identity?.picture" alt="account photo" />
+            <h5 class="ms-2">{{ account?.name }}</h5>
           </div>
         </div>
         <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
@@ -45,4 +46,10 @@ async function logout() {
   </span>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  img {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    height: 4dvh;
+  }
+</style>
